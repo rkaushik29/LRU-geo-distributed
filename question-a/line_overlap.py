@@ -32,7 +32,6 @@ def io_run(input, output):
 
 
 if __name__=="__main__":
-    # Check README for input and output file specifications.
     input_file = "input.txt"
     output_file = "output.txt"
 
