@@ -2,12 +2,13 @@
 
 Your goal for this question is to write a program that accepts two lines (x1,x2) and (x3,x4) on the x-axis and returns whether they overlap. As an example, (1,5) and (2,6) overlaps but not (1,5) and (6,8).
 
+My execution examples are present in `input.txt` and `output.txt`. Please see below for input file formats in case you want to test further.
+
 ## Contents
 
 - [Usage](#usage)
 - [Input File](#input-file)
 - [Output](#output)
-- [Examples](#examples)
 
 ## Usage
 
