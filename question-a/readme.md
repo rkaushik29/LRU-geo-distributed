@@ -20,7 +20,7 @@ To check for overlaps, run the following command:
 ```
 python3 line_overlap.py input.txt output.txt
 ```
-Replace input.txt with the name of your input file containing the line segments and output.txt with the desired output file name.
+Replace input.txt with the name of your input file containing the line segments and output.txt with the desired output file name. *Place this in the same directory as the python program.*
 
 ## Input File
 The input file should contain *one test case per line*, with each test case consisting of *four integers separated by spaces*. These integers represent the endpoints of two line segments on the x-axis. For example:
