@@ -13,6 +13,8 @@ git clone https://github.com/rkaushik29/technical-test/
 cd question-b
 ```
 
+You can find more info on running each question within its directory.
+
 ## Running the Libraries
 Detailed instructions to run each of these libraries are presented here:
 - [Question A](question-a/readme.md)
