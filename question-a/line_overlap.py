@@ -15,10 +15,10 @@ def line_overlap(seg1, seg2):
     
 # Runs `line_overlap` after reading input file and writes results to output file.
 # Input: input - File, output - File
-def io_run(input, output):
+def io_run(input_file, output_file):
     # using `with` so files are closed automatically
-    with open(input, 'r') as input, open(output, 'w') as output:
-        for line in input:
+    with open(input_file, 'r') as input_file, open(output_file, 'w') as output_file:
+        for line in input_file:
             if line[0] == "#" or line[0] == "\n":
                 continue
             # gets all 4 integers as strings
@@ -29,13 +29,13 @@ def io_run(input, output):
                 seg2 = int(segments[2]), int(segments[3])
                 # write output
                 if line_overlap(seg1, seg2):
-                    output.write("Segments: (" + segments[0] + "," + segments[1] + ") and (" + segments[2] + "," + segments[3] + ") overlap.\n")
+                    output_file.write("Segments: (" + segments[0] + "," + segments[1] + ") and (" + segments[2] + "," + segments[3] + ") overlap.\n")
                 else:
-                    output.write("Segments: (" + segments[0] + "," + segments[1] + ") and (" + segments[2] + "," + segments[3] + ") do not overlap.\n")
+                    output_file.write("Segments: (" + segments[0] + "," + segments[1] + ") and (" + segments[2] + "," + segments[3] + ") do not overlap.\n")
 
 
 if __name__=="__main__":
     input_file = "input.txt"
     output_file = "output.txt"
 
-    io_run(input=input_file, output=output_file)
+    io_run(input_file=input_file, output_file=output_file)
