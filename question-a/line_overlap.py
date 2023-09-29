@@ -1,6 +1,7 @@
 # Calculates whether line segments described by seg1 and seg2 params overlap on x-axis.
 # Input: seg1 - Tuple[int, int], seg2 - Tuple[int, int]
 # Return: Boolean
+# Time : O(1) ; Space : O(1)
 def line_overlap(seg1, seg2):
     # unpack line segments into start and end points
     s1, e1 = seg1

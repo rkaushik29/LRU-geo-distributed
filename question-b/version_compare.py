@@ -1,6 +1,7 @@
 # Compares version strings given as input
 # Input: v1 (String), v2 (Sting) representing version numbers
-# Output: String that shows comparison of v1 and v2
+# Return: String that shows comparison of v1 and v2
+# Time : O(max(len(v1), len(v2))) ; Space : O(max(len(v1), len(v2)))
 def compare_versions(v1, v2):   
     # Split strings based on decimal points.
     split1 = v1.split(".")  
@@ -8,6 +9,7 @@ def compare_versions(v1, v2):
     versions1 = []
     versions2 = []
 
+    # Check for empty numbers, and add integer value to list
     for v in split1:
         if v:
             versions1.append(int(v))
@@ -20,6 +22,7 @@ def compare_versions(v1, v2):
         else:
             versions2.append(0)
 
+    # Perform comparison of corresponsing version numbers
     for i in range(max(len(versions1),len(versions2))):
         ver1 = versions1[i] if i < len(versions1) else 0
         ver2 = versions2[i] if i < len(versions2) else 0
