@@ -1,11 +1,26 @@
+# Minimum Possible Values
 0 0 0 0
+
+# Maximum Possible Values
 2147483647 2147483647 2147483647 2147483647
+
+# Negative Values
 -5 -3 -1 2
+-8 -3 -5 -1
+
+# Non-overlapping Segments
 1 3 4 6
 -10 -5 -4 -1
--8 -3 -5 -1
+
+# Overlapping at a Single Point
 2 5 5 7
+
+# Overlapping with One Segment Fully Inside the Other
 2 8 4 6
+
+# Segments Sharing an Endpoint
 1 5 5 8
+
+# Empty Segments
 2 2 3 3
 6 6 6 6

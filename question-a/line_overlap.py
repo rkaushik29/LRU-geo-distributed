@@ -18,6 +18,8 @@ def io_run(input, output):
     # using `with` so files are closed automatically
     with open(input, 'r') as input, open(output, 'w') as output:
         for line in input:
+            if line[0] == "#" or line[0] == "\n":
+                continue
             # gets all 4 integers as strings
             segments = line.strip().split()
             if len(segments) == 4:
@@ -36,4 +38,3 @@ if __name__=="__main__":
     output_file = "output.txt"
 
     io_run(input=input_file, output=output_file)
-    
