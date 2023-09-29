@@ -16,4 +16,5 @@ cd question-b
 ## Running the Libraries
 Detailed instructions to run each of these libraries are presented here:
 - [Question A](question-a/readme.md)
+- [Question B](question-b/readme.md)
 
