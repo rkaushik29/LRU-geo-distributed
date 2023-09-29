@@ -1,0 +1,32 @@
+# Basic test: Comparing two versions with minor differences
+1.2,1.1
+
+# Basic test: Comparing two identical versions
+1.1.5,1.1.5
+
+# Basic test: Comparing versions with different numbers of components
+2.0,2.0.0.0
+1.4.3,1.4.3.0.0.0
+1.7.2.3,1.7.2.3.0.3 
+
+# Basic test: Comparing two versions with major differences
+3,3.0.1            
+
+# Edge case: Testing empty string as the first version
+,1.2.3
+
+# Edge case: Comparing versions with more components
+1.2.3.4,1.2.3      
+
+# Edge case: Leading period in version components
+.1,0.1             
+
+# Edge case: Leading zeros in version components
+1.0.0001,1.0.1     
+
+# Edge case: Comparing floating-point versions
+1.2.3,1.2.3.0.5    
+
+# Edge case: Invalid input with extra periods
+1.2..3,1.2.3       
+1.2.3,1.2.3.0..5
