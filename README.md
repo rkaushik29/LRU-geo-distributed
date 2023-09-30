@@ -6,7 +6,7 @@ This repository contains the libraries written for Questions A, B and C. Instruc
 - *Prerequisites* - You will need Python3 and Git setup locally to run these libraries locally. 
 - To access the libraries, close this repository by running:
 ```
-git clone https://github.com/rkaushik29/technical-test/
+git clone https://github.com/rkaushik29/rohit_kaushik_test.git
 ```
 - To run a specific library, enter the directory. For example:
 ```
