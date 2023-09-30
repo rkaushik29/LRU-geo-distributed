@@ -2,11 +2,12 @@ import socket
 import threading
 from collections import OrderedDict
 
-# Define the main server's data (characters A-Z with coordinates)
+# Defines the main server's data (characters A-Z as key with their data as values)
 main_server_data = {chr(ord('A') + i): f"Data:{chr(ord('A') + i)}" for i in range(26)}
 
+# Reads details of the servers and clients from the input file
 def read_server_client_details(input_file):
-    global M, N
+    global M, N             # used to start threads below
     server_details = {}
     client_details = {}
 
@@ -23,13 +24,15 @@ def read_server_client_details(input_file):
 
     return server_details, client_details
 
-# Function to display the state of all caches
-def display_cache_state():
-    for port, cache in server_caches.items():
-        print(f"Server {server_locations[str(port - 49152 + 1)]} Cache:")
-        for key, value in cache.cache.items():
-            print(f"{key}: {value}")
-        print()
+# Function to write the state of all server caches to server_out.txt
+def display_cache_state(output_file):
+    with open(output_file, 'w') as output:
+        for port, cache in server_caches.items():
+            output.write(f"Server{str(port - 49152 + 1)} at {server_locations[str(port - 49152 + 1)]}\nCache:\n")
+            for key, value in cache.cache.items():
+                output.write(f"{key}: {value}\n")
+            output.write("\n")
+        output.write("---------------------------------------------------\n")
 
 # LRU Cache implementation
 class LRUCache:
@@ -77,7 +80,7 @@ def handle_client(client_socket, client_location, server_port):
         server_caches[server_port].put(request, response)
 
     # Display the state of all caches
-    display_cache_state()
+    display_cache_state(output_file="server_out.txt")
 
     client_socket.send(response.encode())
     client_socket.close()
@@ -93,7 +96,7 @@ def start_server(port, location):
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.bind(('127.0.0.1', port))
     server_socket.listen(5)
-    print(f"Server {port} listening at {location}")
+    print(f"Server{str(port - 49152 + 1)} listening at {location}")
 
     while True:
         client_socket, _ = server_socket.accept()
@@ -102,7 +105,6 @@ def start_server(port, location):
 
 # Define server locations (coordinates)
 server_locations, _ = read_server_client_details('input.txt')
-print(server_locations)
 
 # Create an LRU cache for each server
 server_caches = {port: LRUCache(capacity=3) for port in range(49152, 49152 + max(int(i) for i in server_locations.keys()))}  # Adjust capacity as needed
