@@ -30,8 +30,9 @@ Developed on Python3. This is recommended to run the project.
 
 - In this directory, first fill out `rohit_kaushik_test.txt` with the server and client information, along with the sequence of requests.
 - Run: `python3 servers.py` *first*
-- The, run `python3 clients.py`
+- Then, run `python3 clients.py`
 - Look at `server_out.txt` for cache info and server status. Look at `client_out.txt` for client outputs including response from servers.
+- Note: The servers.py `keeps running` after clients.py finishes running, and clients.py can be run again after changing the input file IFF the schema of the system stays the same.
 
 ## Input File
 *Important*
@@ -49,4 +50,4 @@ Firstly, you can find the `input_format.txt` file which contains examples of the
 There are two output files:
 
 - `server_out` : This contains the cache state of all servers after each request completes.
-- `client_out` : This contains the data returned by servers to clients, along with which server the response came from.
+- `client_out` : This contains the data returned by servers to clients, along with which server the response came from. *Note:* due to code structure, this file has to be cleared manually after each execution of clients.py.
