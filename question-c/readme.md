@@ -49,5 +49,5 @@ Firstly, you can find the `input_format.txt` file which contains examples of the
 ## Output
 There are two output files:
 
-- `server_out` : This contains the cache state of all servers after each request completes.
+- `server_out` : This contains the cache state of all servers after each request completes. *Note:* due to code structure, this file has to be cleared manually on every server startup, not to run new requests.
 - `client_out` : This contains the data returned by servers to clients, along with which server the response came from. *Note:* due to code structure, this file has to be cleared manually after each execution of clients.py.

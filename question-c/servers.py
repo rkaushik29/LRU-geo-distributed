@@ -27,7 +27,7 @@ def read_server_client_details(input_file):
 
 # Function to write the state of all server caches to server_out.txt
 def display_cache_state(output_file):
-    with open(output_file, 'w') as output:
+    with open(output_file, 'a') as output:
         for port, cache in server_caches.items():
             output.write(f"Server{str(port - 49152 + 1)} at {server_locations[str(port - 49152 + 1)]}\nCache:\n")
             for key, value in cache.cache.items():
@@ -45,7 +45,7 @@ class LRUCache:
     def get(self, key):
         if key in self.cache:
             # Check if the item has expired
-            if time.time() - self.cache[key][1] > self.expiration_time_seconds:
+            if time.time() - self.cache[key][1] > self.expiration_time:
                 # Remove the expired item
                 self.cache.pop(key)
                 return None
@@ -115,7 +115,7 @@ def start_server(port, location):
 server_locations, _ = read_server_client_details('input.txt')
 
 # Create an LRU cache for each server, with capacity of 3 items in cache and expiry time of 60s
-server_caches = {port: LRUCache(capacity=3, expiration_time_seconds=60) for port in range(49152, 49152 + max(int(i) for i in server_locations.keys()))}  # Adjust capacity as needed
+server_caches = {port: LRUCache(capacity=3, expiration_time=60) for port in range(49152, 49152 + max(int(i) for i in server_locations.keys()))}  # Adjust capacity as needed
 
 # Start servers with locations and ports
 for server_id, location in server_locations.items():

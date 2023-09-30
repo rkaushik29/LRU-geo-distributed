@@ -11,9 +11,9 @@ M N R
 1 x1 y1
 2 x2 y2
 ...
-Client1 x1 y1
-Client2 x2 y2
+6 x1 y1
+7 x2 y2
 ...
-Client1 Request1 A
-Client2 Request2 Z
+6 Req1 A
+7 Req2 Z
 ...
