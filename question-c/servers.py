@@ -50,9 +50,8 @@ class LRUCache:
                 self.cache.pop(key)
                 return None
             # Update the key to the most recently used position
-            value = self.cache.pop(key)
-            self.cache[key] = value
-            return value
+            self.cache.move_to_end(key)
+            return self.cache[key][0]
         else:
             return None
 
