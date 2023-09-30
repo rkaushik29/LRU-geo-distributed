@@ -1,5 +1,6 @@
 import socket
 import threading
+import time
 from collections import OrderedDict
 
 # Defines the main server's data (characters A-Z as key with their data as values)
@@ -36,12 +37,18 @@ def display_cache_state(output_file):
 
 # LRU Cache implementation
 class LRUCache:
-    def __init__(self, capacity):
+    def __init__(self, capacity, expiration_time):
         self.capacity = capacity
+        self.expiration_time = expiration_time
         self.cache = OrderedDict()
 
     def get(self, key):
         if key in self.cache:
+            # Check if the item has expired
+            if time.time() - self.cache[key][1] > self.expiration_time_seconds:
+                # Remove the expired item
+                self.cache.pop(key)
+                return None
             # Update the key to the most recently used position
             value = self.cache.pop(key)
             self.cache[key] = value
@@ -54,7 +61,8 @@ class LRUCache:
             # Remove the least recently used item
             self.cache.popitem(last=False)
 
-        self.cache[key] = value
+        # Store the item with its creation timestamp
+        self.cache[key] = (value, time.time())
 
 # Function to handle client requests
 def handle_client(client_socket, client_location, server_port):
@@ -106,8 +114,8 @@ def start_server(port, location):
 # Define server locations (coordinates)
 server_locations, _ = read_server_client_details('input.txt')
 
-# Create an LRU cache for each server
-server_caches = {port: LRUCache(capacity=3) for port in range(49152, 49152 + max(int(i) for i in server_locations.keys()))}  # Adjust capacity as needed
+# Create an LRU cache for each server, with capacity of 3 items in cache and expiry time of 60s
+server_caches = {port: LRUCache(capacity=3, expiration_time_seconds=60) for port in range(49152, 49152 + max(int(i) for i in server_locations.keys()))}  # Adjust capacity as needed
 
 # Start servers with locations and ports
 for server_id, location in server_locations.items():
