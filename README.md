@@ -19,4 +19,4 @@ You can find more info on running each question within its directory.
 Detailed instructions to run each of these libraries are presented here:
 - [Question A](question-a/readme.md)
 - [Question B](question-b/readme.md)
-
+- [Question C](question-c/readme.md)

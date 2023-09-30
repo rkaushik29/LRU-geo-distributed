@@ -1,0 +1,19 @@
+The first line specifies the number of servers (M), clients (N) and requests sent by the clients (R).
+- Please limit (M <= 10) and (N <= (M/2)) for the best results and smooth running, since the project runs on a local system.
+
+The following lines specify server and client details. x1 y1 represent geographical co-ordinates of servers and clients.
+
+Client requests are specified with the client ID, request name, and data to request.
+- The data used for this project is simple and consists of characters from 'A' to 'Z' (Uppercase only!) for demo purposes. Ideally, it could be any data.
+############### INPUT FILE FORMAT BELOW ###################
+
+M N R
+1 x1 y1
+2 x2 y2
+...
+Client1 x1 y1
+Client2 x2 y2
+...
+Client1 Request1 A
+Client2 Request2 Z
+...
