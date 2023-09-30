@@ -10,15 +10,12 @@ The entire distributed system is simulated on a local machine. The system consis
 - [Usage](#usage)
 - [Input File](#input-file)
 - [Output](#output)
+- [Impovements](#improvements)
 
 
 ## System Overview
 ### servers.py
 In this file, the servers are set up. There exists a *main server* which contains all the data at the beginning, think of it as a database. Apart from this, you have the choice to set up `M servers` along with their geographical co-ordinates (float type) in the input file. In the local machine, `ports 49152 to 49152 + M` are reserved for each server, which start listening on these ports through `TCP connections` that are set up `concurrently` using servers.py. Initially, the caches in these M servers are empty. After every request from a client, the servers.py file outputs the `cache state of the entire system` in `server_out.txt`. When a server is asked for data, if it does not have it, it will ask the nearest server (`Euclidean distance`) for the data, and so on until it finds the data. This data then gets caches in the server using LRU.
-
-- One improvement to this can be limiting the number of hops in seeking data, as this would increase latency in case the data does not exist.
-- A server can be made to keep a list of neighbors that it mostly gets data from, and prioritize exploratory requests to be sent to this one.
-- The servers use TCP, this created latency because of the need for `acknowledgements`. Using UDP, depending on the use-case, could reduce latency. 
 
 ### clients.py
 This script sets up `N clients` at pairs of co-ordinates, and reads the requests that they are making from the input file. These also occupy ports and are bound to them by sockets for TCP connections. The requests are then sent to the nearest server, calculated using `Euclidean distance`. The script outputs the response recieved from the server, along with the data and name of the server.
@@ -51,3 +48,13 @@ There are two output files:
 
 - `server_out` : This contains the cache state of all servers after each request completes. *Note:* due to code structure, this file has to be cleared manually on every server startup, not to run new requests.
 - `client_out` : This contains the data returned by servers to clients, along with which server the response came from. *Note:* due to code structure, this file has to be cleared manually after each execution of clients.py.
+
+## Improvements
+
+- Background process or thread that periodically cleans up expired items from the cache to ensure efficient memory usage.
+- One improvement to this can be limiting the number of hops in seeking data, as this would increase latency in case the data does not exist.
+- A server can be made to keep a list of neighbors that it mostly gets data from, and prioritize exploratory requests to be sent to this one.
+- The servers use TCP, this created latency because of the need for `acknowledgements`. Using UDP, depending on the use-case, could reduce latency.
+- Can track metrics like cache hit and miss rate to make management better.
+- Can add some config management for expiration time and port numbers 
+- Persistent storage is not present in this system. It can be added for resiliency to power outages.
